@@ -1,0 +1,24 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: springcloud-zuul
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+  instance:
+    instance-id: zuul8888.com
+    prefer-ip-address: true
+
+info:
+ app.name: springcloud-demo
+ company.name: suaxi
+
+zuul:
+  routes:
+    mydept.serviceID: springcloud-provider-dept
+    mydept.path: /mydept/**
+  ignored-services: "*" #禁止使用原来的微服务名访问，设置为 * 表示禁止使用全部的微服务ID进行访问
